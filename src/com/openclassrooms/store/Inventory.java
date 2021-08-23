@@ -53,5 +53,13 @@ public class Inventory {
 		items.forEach((item, quantity) -> System.out
 				.println((item.getClass().getSimpleName() + " - " + item.brand + ":" + quantity)));
 	}
+	/**
+	 * Display on console the list of items 
+	 */
+	public void displayItemsOnConsole() {
+		System.out.println(" --- Items in stock --- ");
+		items.forEach((item, quantity) -> System.out
+				.println((item.getClass().getSimpleName() + " - " + item.brand + ":" + item.price)));
+	}
 
 }
