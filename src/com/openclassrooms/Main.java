@@ -6,8 +6,8 @@ public class Main {
 
     public static void main(String[] args) {
     	
-        Item dellMouse = new Mouse(Brand.DELL, 20.0);
-        Item samsungScreen = new Screen(Brand.SAMSUNG, 150.0, "1920x1080");
+        Mouse dellMouse = new Mouse(Brand.DELL, 20.0);
+        Screen samsungScreen = new Screen(Brand.SAMSUNG, 150.0, "1920x1080");
          
         
         Inventory inventory = new Inventory();
