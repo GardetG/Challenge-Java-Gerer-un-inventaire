@@ -6,8 +6,8 @@ public class Main {
 
     public static void main(String[] args) {
     	
-        Mouse dellMouse = new Mouse(Brand.DELL, 20.0);
-        Screen samsungScreen = new Screen(Brand.SAMSUNG, 150.0, "1920x1080");
+        Mouse dellMouse = new Mouse("08001",Brand.DELL, 20.0);
+        Screen samsungScreen = new Screen("07001",Brand.SAMSUNG, 150.0, "1920x1080");
          
         
         Inventory inventory = new Inventory();
@@ -20,8 +20,7 @@ public class Main {
 
         inventory.removeItem(dellMouse, 12);
 
-        inventory.displayInventoryOnConsole();/*
+        inventory.displayInventoryOnConsole();
         inventory.displayItemsOnConsole();
-        */
     }
 }
