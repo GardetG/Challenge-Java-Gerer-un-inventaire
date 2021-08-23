@@ -1,7 +1,7 @@
 package com.openclassrooms.store;
 
 /**
- * Item that are managed by the inventory
+ * Item that are managed by the inventory and identify by ref
  */
 public abstract class Item {
 
