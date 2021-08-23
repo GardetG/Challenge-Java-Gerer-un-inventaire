@@ -1,32 +1,57 @@
 package com.openclassrooms.store;
 
+import java.util.HashMap;
+import java.util.Map;
+
+/**
+ * Manage items and quantity of them Can display all items on the console
+ */
 public class Inventory {
 
-    public Screen[] screens;
-    public Mouse[] mice;
+	public Map<Item, Integer> items = new HashMap<>();
 
-    public Inventory() {
-        screens = new Screen[10];
-        mice = new Mouse[10];
-    }
+	public Inventory() {
+		items = new HashMap<>();
+	}
 
-    public void addScreen(Screen a) {
-        for(int i = 0; i< screens.length; i++) {
-            if(screens[i] == null) {
-               screens[i] = a;
-               break;
-            }
-        }
-    }
+	/**
+	 * Add items to this inventory
+	 * 
+	 * @param itemToAdd Item to add to the inventory
+	 * @param quantity  Quantity to add
+	 */
+	public void addItem(Item itemToAdd, int quantity) {
+		if (items.containsKey(itemToAdd)) {
+			quantity = items.get(itemToAdd) + quantity;
+		}
+		items.put(itemToAdd, quantity);
+	}
 
-    public void addMouse(Mouse a) {
-        for(int i = 0; i< mice.length; i++) {
-            if(mice[i] == null) {
-                mice[i] = a;
-                break;
-            }
-        }
-    }
+	/**
+	 * Remove items to this inventory
+	 * 
+	 * @param itemToRemove Item to remove from this inventory
+	 * @param quantity     Quantity to remove
+	 */
+	public void removeItem(Item itemToRemove, int quantity) {
+		if (items.containsKey(itemToRemove)) {
+			quantity = items.get(itemToRemove) - quantity;
+			if (quantity <= 0) {
+				items.remove(itemToRemove);
+			} else {
+				items.put(itemToRemove, quantity);
+			}
 
+		}
+	}
+
+	/**
+	 * Display on console the list of items in inventory and their quantity
+	 */
+	public void displayInventoryOnConsole() {
+		System.out.println(" --- Inventory --- ");
+		items.forEach((item, quantity) -> System.out
+				.println((item.getClass().getSimpleName() + " - " + item.brand + ":" + quantity)));
+	}
 
 }
