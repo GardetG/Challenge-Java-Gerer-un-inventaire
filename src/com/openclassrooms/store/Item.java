@@ -3,7 +3,7 @@ package com.openclassrooms.store;
 /**
  * Item that are managed by the inventory
  */
-public class Item {
+public abstract class Item {
 
 	protected Brand brand;
 	protected double price;
