@@ -1,32 +1,39 @@
 package com.openclassrooms.store;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class Inventory {
 
-    public Screen[] screens;
-    public Mouse[] mice;
-
+	public Map<Item,Integer> items = new HashMap<>();
+    
     public Inventory() {
-        screens = new Screen[10];
-        mice = new Mouse[10];
+    	items = new HashMap<>();
     }
-
-    public void addScreen(Screen a) {
-        for(int i = 0; i< screens.length; i++) {
-            if(screens[i] == null) {
-               screens[i] = a;
-               break;
-            }
-        }
+    
+    public void addItem(Item itemToAdd, int quantity) {
+    	if (items.containsKey(itemToAdd)) {
+    		quantity=items.get(itemToAdd) + quantity;
+    	} 
+    	items.put(itemToAdd, quantity);
     }
-
-    public void addMouse(Mouse a) {
-        for(int i = 0; i< mice.length; i++) {
-            if(mice[i] == null) {
-                mice[i] = a;
-                break;
-            }
-        }
+    
+    public void removeItem(Item itemToRemove,int quantity) {
+    	if (items.containsKey(itemToRemove)) {
+    		quantity=items.get(itemToRemove)- quantity;
+    		if (quantity <=0) {
+    			items.remove(itemToRemove);
+    		}else {
+    			items.put(itemToRemove,quantity);
+    		}
+    		
+    	}
     }
-
+    
+    public void displayInventoryOnConsole() {
+    	System.out.println(" --- Inventory --- ");
+        items.forEach((item, quantity) ->
+        System.out.println((item.getClass().getSimpleName() + " - " + item.brand + ":" + quantity)));
+    }
 
 }
