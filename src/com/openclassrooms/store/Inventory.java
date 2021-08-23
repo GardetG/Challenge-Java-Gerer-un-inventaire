@@ -26,6 +26,10 @@ public class Inventory {
 		}
 		items.put(itemToAdd, quantity);
 	}
+	
+	public void addItem(Item itemToAdd) {
+		this.addItem(itemToAdd,1);
+	}
 
 	/**
 	 * Remove items to this inventory
@@ -44,14 +48,16 @@ public class Inventory {
 
 		}
 	}
-
+	public void removeItem(Item itemToRemove) {
+		this.removeItem(itemToRemove, 1);
+	}
 	/**
 	 * Display on console the list of items in inventory and their quantity
 	 */
 	public void displayInventoryOnConsole() {
 		System.out.println(" --- Inventory --- ");
 		items.forEach((item, quantity) -> System.out
-				.println((item.getClass().getSimpleName() + " - " + item.brand + ":" + quantity)));
+				.println((item.getClass().getSimpleName() + " - " + item.reference + ":" + quantity)));
 	}
 	/**
 	 * Display on console the list of items 
@@ -59,7 +65,7 @@ public class Inventory {
 	public void displayItemsOnConsole() {
 		System.out.println(" --- Items in stock --- ");
 		items.forEach((item, quantity) -> System.out
-				.println((item.getClass().getSimpleName() + " - " + item.brand + ":" + item.price)));
+				.println((item.getClass().getSimpleName() + " - " + item.reference+ " - "+item.brand + ":" + item.price)));
 	}
 
 }
