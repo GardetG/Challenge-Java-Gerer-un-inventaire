@@ -8,5 +8,12 @@ public class Screen extends Item {
         super(reference,brand,price);
         this.resolution = resolution;
     }
+    
+    @Override
+    public String Parse() {
+    	String Output = super.Parse();
+    	Output+=this.resolution+";";
+    	return Output;
+    }
 
 }

@@ -22,13 +22,13 @@ public class Main {
 			case "Mouse":
 				Mouse mouseToAdd = new Mouse(parsedEntry[1], Brand.valueOf(parsedEntry[2]),
 						Double.parseDouble(parsedEntry[3]));
-				inventory.addItem(mouseToAdd);
+				inventory.addItem(mouseToAdd,Integer.parseInt(parsedEntry[4]));
 				break;
 
 			case "Screen":
 				Screen screenToAdd = new Screen(parsedEntry[1], Brand.valueOf(parsedEntry[2]),
 						Double.parseDouble(parsedEntry[3]), parsedEntry[4]);
-				inventory.addItem(screenToAdd);
+				inventory.addItem(screenToAdd,Integer.parseInt(parsedEntry[5]));
 				break;
 
 			default:
@@ -43,11 +43,15 @@ public class Main {
 
 		inventory.addItem(dellMouse, 12);
 		inventory.removeItem(dellMouse, 2);
-		inventory.displayInventoryOnConsole();
+		inventory.displayInventoryOnConsole(); 
 
 		inventory.removeItem(dellMouse, 12);
-
+		inventory.addItem(dellMouse, 2);
+		
 		inventory.displayInventoryOnConsole();
 		inventory.displayItemsOnConsole();
+		
+		IInventoryWriter inventoryWriter=new WriteInventoryInFile("inventory.inv");
+		inventoryWriter.PostInventory(inventory);
 	}
 }
