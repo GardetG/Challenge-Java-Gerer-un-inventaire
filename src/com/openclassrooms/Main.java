@@ -1,26 +1,53 @@
 package com.openclassrooms;
 
-import com.openclassrooms.store.*;
+import java.util.List;
+
+import com.openclassrooms.store.Brand;
+import com.openclassrooms.store.Inventory;
+import com.openclassrooms.store.Mouse;
+import com.openclassrooms.store.Screen;
 
 public class Main {
 
-    public static void main(String[] args) {
-    	
-        Mouse dellMouse = new Mouse("08001",Brand.DELL, 20.0);
-        Screen samsungScreen = new Screen("07001",Brand.SAMSUNG, 150.0, "1920x1080");
-         
-        
-        Inventory inventory = new Inventory();
-        
-        inventory.addItem(samsungScreen, 5);
+	public static void main(String[] args) {
 
-        inventory.addItem(dellMouse, 12);
-        inventory.removeItem(dellMouse, 2);
-        inventory.displayInventoryOnConsole();
+		IInventoryReader inventoryReader = new ReadInventoryFromFile("inventory.inv");
+		List<String> inventoryList = inventoryReader.GetInventory();
 
-        inventory.removeItem(dellMouse, 12);
+		Inventory inventory = new Inventory();
 
-        inventory.displayInventoryOnConsole();
-        inventory.displayItemsOnConsole();
-    }
+		for (String entry : inventoryList) {
+			String[] parsedEntry = entry.split(";");
+			switch (parsedEntry[0]) {
+			case "Mouse":
+				Mouse mouseToAdd = new Mouse(parsedEntry[1], Brand.valueOf(parsedEntry[2]),
+						Double.parseDouble(parsedEntry[3]));
+				inventory.addItem(mouseToAdd);
+				break;
+
+			case "Screen":
+				Screen screenToAdd = new Screen(parsedEntry[1], Brand.valueOf(parsedEntry[2]),
+						Double.parseDouble(parsedEntry[3]), parsedEntry[4]);
+				inventory.addItem(screenToAdd);
+				break;
+
+			default:
+				System.out.println("Invalid Item");
+			}
+		}
+
+		Mouse dellMouse = new Mouse("08001", Brand.DELL, 20.0);
+		Screen samsungScreen = new Screen("07001", Brand.SAMSUNG, 150.0, "1920x1080");
+
+		inventory.addItem(samsungScreen, 5);
+
+		inventory.addItem(dellMouse, 12);
+		inventory.removeItem(dellMouse, 2);
+		inventory.displayInventoryOnConsole();
+
+		inventory.removeItem(dellMouse, 12);
+
+		inventory.displayInventoryOnConsole();
+		inventory.displayItemsOnConsole();
+	}
 }
