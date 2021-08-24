@@ -3,15 +3,15 @@ package com.openclassrooms;
 import java.util.List;
 
 /**
- * Interface for class which read inventory from a data source and return
- * a raw string list.
+ * Interface implemented by a class which retrieve inventory data from a data
+ * source.
  */
 public interface IInventoryReader {
 	/**
 	 * 
 	 * If no data is available, return an empty List
 	 * 
-	 * @return Raw string list of inventory
+	 * @return Raw string list of inventory's entry
 	 */
-	List<String> GetInventory ();
+	List<String> GetInventory();
 }

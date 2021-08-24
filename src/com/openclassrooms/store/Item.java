@@ -3,7 +3,7 @@ package com.openclassrooms.store;
 import java.util.Objects;
 
 /**
- * Item that are managed by the inventory and identify by ref
+ * Item that are managed by the inventory.
  */
 public abstract class Item {
 
@@ -16,7 +16,10 @@ public abstract class Item {
 		this.brand = brand; // Updating brand field
 		this.price = price; // Updating price field
 	}
-
+/**
+ * 
+ * @return String describing the item
+ */
 	public String Parse() {
 		String Output="";
 		Output+=this.getClass().getSimpleName()+";";

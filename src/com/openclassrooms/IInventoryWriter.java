@@ -3,15 +3,14 @@ package com.openclassrooms;
 import com.openclassrooms.store.Inventory;
 
 /**
- * 
- * Interface for class which write in a data source the current inventory to
- * persist.
+ * Interface implemented by a class which write in a data source the current
+ * inventory.
  *
  */
 public interface IInventoryWriter {
 	/**
 	 * 
-	 * @param inventory to persist
+	 * @param Inventory to write in data source.
 	 */
 	void PostInventory(Inventory inventory);
 }
