@@ -70,7 +70,7 @@ public class Inventory {
 	public void displayInventoryOnConsole() {
 		System.out.println(" ------ Inventory ------- ");
 		System.out.println(" |Name      |Ref  |Qty  | ");
-		System.out.println(" ------------------------ ");
+		System.out.println(" |----------------------| ");
 		items.forEach((item, quantity) -> {
 			String outtxt = " |";
 			outtxt += formate(item.getClass().getSimpleName(), 10, true);
@@ -88,9 +88,22 @@ public class Inventory {
 	 * Display on console the list of items
 	 */
 	public void displayItemsOnConsole() {
-		System.out.println(" --- Items in stock --- ");
-		items.forEach((item, quantity) -> System.out.println(
-				(item.getClass().getSimpleName() + " - " + item.reference + " - " + item.brand + ":" + item.price)));
+		System.out.println(" ---------- Items in stock --------- ");
+		System.out.println(" |Name      |Ref  |Brand     |Price| ");
+		System.out.println(" |---------------------------------| ");
+		items.forEach((item, quantity) ->{
+			String outtxt = " |";
+			outtxt += formate(item.getClass().getSimpleName(), 10, true);
+			outtxt += "|";
+			outtxt += formate(item.reference, 5, false);
+			outtxt += "|";
+			outtxt += formate(item.brand.toString(), 10, false);
+			outtxt += "|";
+			outtxt += formate(Double.toString(item.price), 5, false);
+			outtxt+="|";
+			System.out.println(outtxt);
+		});
+		System.out.println(" ----------------------------------- ");
 	}
 
 }
