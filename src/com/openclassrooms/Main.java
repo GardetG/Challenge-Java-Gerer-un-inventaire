@@ -90,7 +90,7 @@ public class Main {
 	public static Item CreateItem(String parsedItem) {
 		Item outputItem;
 		try {
-			String[] parsedEntry = parsedItem.split(";");
+			String[] parsedEntry = parsedItem.split("_");
 			switch (parsedEntry[0]) {
 			case "Mouse":
 				outputItem = new Mouse(parsedEntry[1], Brand.valueOf(parsedEntry[2]),
