@@ -26,9 +26,9 @@ public class Inventory {
 		}
 		items.put(itemToAdd, quantity);
 	}
-	
+
 	public void addItem(Item itemToAdd) {
-		this.addItem(itemToAdd,1);
+		this.addItem(itemToAdd, 1);
 	}
 
 	/**
@@ -48,24 +48,49 @@ public class Inventory {
 
 		}
 	}
+
 	public void removeItem(Item itemToRemove) {
 		this.removeItem(itemToRemove, 1);
 	}
+
+	private String formate(String entry, int length, boolean reverse) {
+		while (entry.length() < length) {
+			if (reverse) {
+				entry += " ";
+			} else {
+				entry = " " + entry;
+			}
+		}
+		return entry;
+	}
+
 	/**
 	 * Display on console the list of items in inventory and their quantity
 	 */
 	public void displayInventoryOnConsole() {
-		System.out.println(" --- Inventory --- ");
-		items.forEach((item, quantity) -> System.out
-				.println((item.getClass().getSimpleName() + " - " + item.reference + ":" + quantity)));
+		System.out.println(" ------ Inventory ------- ");
+		System.out.println(" |Name      |Ref  |Qty  | ");
+		System.out.println(" ------------------------ ");
+		items.forEach((item, quantity) -> {
+			String outtxt = " |";
+			outtxt += formate(item.getClass().getSimpleName(), 10, true);
+			outtxt += "|";
+			outtxt += formate(item.reference, 5, false);
+			outtxt += "|";
+			outtxt += formate(Integer.toString(quantity), 5, false);
+			outtxt+="|";
+			System.out.println(outtxt);
+		});
+		System.out.println(" ------------------------ ");
 	}
+
 	/**
-	 * Display on console the list of items 
+	 * Display on console the list of items
 	 */
 	public void displayItemsOnConsole() {
 		System.out.println(" --- Items in stock --- ");
-		items.forEach((item, quantity) -> System.out
-				.println((item.getClass().getSimpleName() + " - " + item.reference+ " - "+item.brand + ":" + item.price)));
+		items.forEach((item, quantity) -> System.out.println(
+				(item.getClass().getSimpleName() + " - " + item.reference + " - " + item.brand + ":" + item.price)));
 	}
 
 }
